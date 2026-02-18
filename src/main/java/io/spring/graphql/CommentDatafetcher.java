@@ -5,8 +5,6 @@ import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.netflix.graphql.dgs.InputArgument;
 import graphql.execution.DataFetcherResult;
-import graphql.relay.DefaultConnectionCursor;
-import graphql.relay.DefaultPageInfo;
 import io.spring.application.CommentQueryService;
 import io.spring.application.CursorPageParameter;
 import io.spring.application.CursorPager;
@@ -99,8 +97,7 @@ public class CommentDatafetcher {
         .build();
   }
 
-  private io.spring.graphql.types.PageInfo buildCommentPageInfo(
-      CursorPager<CommentData> comments) {
+  private io.spring.graphql.types.PageInfo buildCommentPageInfo(CursorPager<CommentData> comments) {
     return io.spring.graphql.types.PageInfo.newBuilder()
         .startCursor(
             comments.getStartCursor() == null ? null : comments.getStartCursor().toString())

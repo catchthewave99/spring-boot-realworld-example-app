@@ -6,8 +6,6 @@ import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import graphql.execution.DataFetcherResult;
-import graphql.relay.DefaultConnectionCursor;
-import graphql.relay.DefaultPageInfo;
 import graphql.schema.DataFetchingEnvironment;
 import io.spring.api.exception.ResourceNotFoundException;
 import io.spring.application.ArticleQueryService;
@@ -356,8 +354,7 @@ public class ArticleDatafetcher {
         .build();
   }
 
-  private io.spring.graphql.types.PageInfo buildArticlePageInfo(
-      CursorPager<ArticleData> articles) {
+  private io.spring.graphql.types.PageInfo buildArticlePageInfo(CursorPager<ArticleData> articles) {
     return io.spring.graphql.types.PageInfo.newBuilder()
         .startCursor(
             articles.getStartCursor() == null ? null : articles.getStartCursor().toString())
